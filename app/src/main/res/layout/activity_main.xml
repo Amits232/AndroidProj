@@ -1,52 +1,39 @@
-<!-- activity_main.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_weight="10"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- Button for Guess the Number Game -->
-
-    <!-- Button for Image Capture -->
     <Button
         android:id="@+id/btn_guess_game"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Guess the Number" />
 
-    <!-- Button for Calculator -->
-
-    <!-- Button for Your Chosen Game -->
-
+    <!-- Button for Image Capture -->
     <Button
         android:id="@+id/btn_image_capture"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_below="@id/btn_guess_game"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="111dp"
         android:text="Image Capture" />
 
+    <!-- Button for Calculator -->
     <Button
         android:id="@+id/btn_calculator"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_below="@id/btn_image_capture"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="87dp"
         android:text="Calculator" />
 
+    <!-- Button for Your Chosen Game -->
     <Button
         android:id="@+id/btn_custom_game"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_below="@id/btn_calculator"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="107dp"
         android:text="Custom Game" />
 
 </LinearLayout>
