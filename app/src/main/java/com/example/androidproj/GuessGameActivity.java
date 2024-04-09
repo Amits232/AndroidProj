@@ -10,13 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Random;
 
-public class CustomGameActivity extends AppCompatActivity {
+public class GuessGameActivity extends AppCompatActivity {
 
     private EditText editTextGuess;
     private Button buttonGuess;
     private TextView textViewResult;
     private int randomNumber;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

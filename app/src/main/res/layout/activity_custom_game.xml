@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomGameActivity">
+    android:padding="16dp"
+    android:background="@color/light_gray">
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tic-Tac-Toe"
+        android:textSize="29sp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/textViewTitle"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_00"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_01"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_02"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_10"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_11"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_12"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_20"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_21"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/button_22"
+                style="@style/GameButton"
+                android:onClick="onClick" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
