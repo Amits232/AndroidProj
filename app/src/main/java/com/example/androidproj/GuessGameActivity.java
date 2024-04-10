@@ -15,21 +15,22 @@ public class GuessGameActivity extends AppCompatActivity {
     private EditText editTextGuess;
     private Button buttonGuess;
     private TextView textViewResult;
+    private int minNumber = 1;
+    private int maxNumber = 10;
     private int randomNumber;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_game);
+        setContentView(R.layout.activity_guess_game);
 
         editTextGuess = findViewById(R.id.editTextGuess);
         buttonGuess = findViewById(R.id.buttonGuess);
         textViewResult = findViewById(R.id.textViewResult);
 
-        // Generate a random number between 1 and 100
-        Random random = new Random();
-        randomNumber = random.nextInt(100) + 1;
+        // Generate a random number between the current range
+        generateRandomNumber();
 
         buttonGuess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,11 @@ public class GuessGameActivity extends AppCompatActivity {
                 checkGuess();
             }
         });
+    }
+
+    private void generateRandomNumber() {
+        Random random = new Random();
+        randomNumber = random.nextInt(maxNumber - minNumber + 1) + minNumber;
     }
 
     private void checkGuess() {
@@ -48,15 +54,25 @@ public class GuessGameActivity extends AppCompatActivity {
 
         int guess = Integer.parseInt(guessText);
 
-        if (guess < 1 || guess > 100) {
-            textViewResult.setText("Please enter a number between 1 and 100.");
+        if (guess < minNumber || guess > maxNumber) {
+            textViewResult.setText("Please enter a number between " + minNumber + " and " + maxNumber + ".");
         } else if (guess < randomNumber) {
             textViewResult.setText("Too low! Try again.");
         } else if (guess > randomNumber) {
             textViewResult.setText("Too high! Try again.");
         } else {
             textViewResult.setText("Congratulations! You guessed the number.");
-            buttonGuess.setEnabled(false); // Disable the button after correct guess
+
+            // Increase the range and generate a new random number
+            maxNumber *= 2;
+            generateRandomNumber();
+
+            // Update UI for the new range
+            editTextGuess.setText(""); // Clear the guess input
+            textViewResult.append("\nNew range: " + minNumber + " - " + maxNumber);
+
+            // Enable the button for the new range
+            buttonGuess.setEnabled(true);
         }
     }
 }
