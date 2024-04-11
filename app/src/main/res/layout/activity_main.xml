@@ -1,85 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
-
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Afik and Amit's App"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:src="@drawable/white_square"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/app_name"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center_horizontal">
+        android:src="@drawable/animation_joke"
+        android:layout_centerInParent="true" />
 
-        <Button
-            android:id="@+id/btn_guess_game"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Guess the Number" />
-
-        <Button
-            android:id="@+id/btn_image_capture"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Image Capture" />
-
-    </LinearLayout>
-
-    <!-- Second row of buttons -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/btn_calculator"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Calculator" />
-
-        <Button
-            android:id="@+id/btn_custom_game"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Custom Game" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
