@@ -71,8 +71,6 @@ public class GuessGameActivity extends AppCompatActivity {
             editTextGuess.setText(""); // Clear the guess input
             textViewResult.append("\nNew range: " + minNumber + " - " + maxNumber);
 
-            // Enable the button for the new range
-            buttonGuess.setEnabled(true);
         }
     }
 }
