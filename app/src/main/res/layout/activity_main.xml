@@ -5,36 +5,59 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <!-- Button for Guess the Number Game -->
-    <Button
-        android:id="@+id/btn_guess_game"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Guess the Number" />
+    <!-- Image above the buttons -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/white_square"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/app_name"/>
 
-    <!-- Button for Image Capture -->
-    <Button
-        android:id="@+id/btn_image_capture"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Image Capture" />
+    <!-- First row of buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
-    <!-- Button for Calculator -->
-    <Button
-        android:id="@+id/btn_calculator"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Calculator" />
+        <Button
+            android:id="@+id/btn_guess_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Guess the Number" />
 
-    <!-- Button for Your Chosen Game -->
-    <Button
-        android:id="@+id/btn_custom_game"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Custom Game" />
+        <Button
+            android:id="@+id/btn_image_capture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Image Capture" />
+
+    </LinearLayout>
+
+    <!-- Second row of buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_calculator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Calculator" />
+
+        <Button
+            android:id="@+id/btn_custom_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Custom Game" />
+
+    </LinearLayout>
 
 </LinearLayout>
