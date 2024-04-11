@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <!-- Button for Guess the Number Game -->
     <Button
@@ -10,7 +11,6 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="15.5mm"
         android:text="Guess the Number" />
 
     <!-- Button for Image Capture -->
@@ -19,8 +19,6 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="15.5mm"
-
         android:text="Image Capture" />
 
     <!-- Button for Calculator -->
@@ -29,7 +27,6 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="15.5mm"
         android:text="Calculator" />
 
     <!-- Button for Your Chosen Game -->
@@ -38,7 +35,6 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="15.5mm"
         android:text="Custom Game" />
 
 </LinearLayout>
