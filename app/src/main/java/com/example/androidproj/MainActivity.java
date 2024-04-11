@@ -2,6 +2,7 @@ package com.example.androidproj;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -60,4 +61,15 @@ public class MainActivity extends AppCompatActivity {
         btnCalculator.setOnClickListener(buttonClickListener);
         btnCustomGame.setOnClickListener(buttonClickListener);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            Bitmap imageBitmap = (Bitmap) data.getExtras().get("imageBitmap");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
+
+
 }
