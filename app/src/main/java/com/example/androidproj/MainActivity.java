@@ -1,75 +1,44 @@
 package com.example.androidproj;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.androidproj.HomePageActivity;
+
 public class MainActivity extends AppCompatActivity {
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get references to the buttons
-        Button btnGuessGame = findViewById(R.id.btn_guess_game);
-        Button btnImageCapture = findViewById(R.id.btn_image_capture);
-        Button btnCalculator = findViewById(R.id.btn_calculator);
-        Button btnCustomGame = findViewById(R.id.btn_custom_game);
-
         // Get reference to the image view
-        imageView = findViewById(R.id.image);
+        ImageView imageView = findViewById(R.id.image);
 
-        // Set click listener for all buttons
-        View.OnClickListener buttonClickListener = new View.OnClickListener() {
+        // Load animation
+        Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        imageView.startAnimation(fadeInAnimation);
+
+        // Set a listener to navigate to the next activity when the animation ends
+        fadeInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onClick(View v) {
-                // Determine which button was clicked based on its ID
-                if (v.getId() == R.id.btn_guess_game) {
-                    // Start Guess the Number Game activity
-                    Intent guessGameIntent = new Intent(MainActivity.this, GuessGameActivity.class);
-                    startActivity(guessGameIntent);
-                } else if (v.getId() == R.id.btn_image_capture) {
-                    // Start Image Capture activity
-                    Intent imageCaptureIntent = new Intent(MainActivity.this, ImageCaptureActivity.class);
-                    startActivityForResult(imageCaptureIntent, REQUEST_IMAGE_CAPTURE);
-                } else if (v.getId() == R.id.btn_calculator) {
-                    // Start Calculator activity
-                    Intent calculatorIntent = new Intent(MainActivity.this, CalculatorActivity.class);
-                    startActivity(calculatorIntent);
-                } else if (v.getId() == R.id.btn_custom_game) {
-                    // Start Custom Game activity
-                    Intent customGameIntent = new Intent(MainActivity.this, CustomGameActivity.class);
-                    startActivity(customGameIntent);
-                }
+            public void onAnimationStart(Animation animation) {}
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Animation ended, navigate to the next activity (replace HomePageActivity.class with your actual home page activity)
+                Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
+                startActivity(intent);
+                finish(); // Optional: finish the current activity so that back button won't come back here
             }
-        };
 
-        // Assign click listener to all buttons
-        btnGuessGame.setOnClickListener(buttonClickListener);
-        btnImageCapture.setOnClickListener(buttonClickListener);
-        btnCalculator.setOnClickListener(buttonClickListener);
-        btnCustomGame.setOnClickListener(buttonClickListener);
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-            Bitmap imageBitmap = (Bitmap) data.getExtras().get("imageBitmap");
-            imageView.setImageBitmap(imageBitmap);
-        }
-    }
-
-
 }
