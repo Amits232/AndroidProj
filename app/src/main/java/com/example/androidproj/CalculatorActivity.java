@@ -6,17 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+// Package and imports are necessary for accessing Android framework classes and functionality
+
 public class CalculatorActivity extends AppCompatActivity {
 
-    private EditText editText;
-    private StringBuilder input = new StringBuilder();
+    private EditText editText; // EditText view for displaying input/output
+    private StringBuilder input = new StringBuilder(); // StringBuilder to store user input
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculator);
+        setContentView(R.layout.activity_calculator); // Set layout for the activity
 
-        editText = findViewById(R.id.editText);
+        editText = findViewById(R.id.editText); // Initialize EditText reference to the view
 
         // Set click listeners for number buttons
         setNumberButtonClickListeners();
@@ -28,7 +30,7 @@ public class CalculatorActivity extends AppCompatActivity {
         findViewById(R.id.button_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearInput();
+                clearInput(); // Call clearInput() method when clear button is clicked
             }
         });
 
@@ -36,7 +38,7 @@ public class CalculatorActivity extends AppCompatActivity {
         findViewById(R.id.button_equal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculateResult();
+                calculateResult(); // Call calculateResult() method when equal button is clicked
             }
         });
 
@@ -44,14 +46,15 @@ public class CalculatorActivity extends AppCompatActivity {
         findViewById(R.id.button_dot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!input.toString().contains(".")) {
-                    input.append(".");
-                    editText.setText(input.toString());
+                if (!input.toString().contains(".")) { // Check if dot is not already present in input
+                    input.append("."); // Append dot to input StringBuilder
+                    editText.setText(input.toString()); // Update EditText view with the modified input
                 }
             }
         });
     }
 
+    // Method to set click listeners for number buttons
     private void setNumberButtonClickListeners() {
         int[] numberButtonIds = {
                 R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
@@ -64,13 +67,14 @@ public class CalculatorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Button button = (Button) v;
-                    input.append(button.getText());
-                    editText.setText(input.toString());
+                    input.append(button.getText()); // Append clicked number to input StringBuilder
+                    editText.setText(input.toString()); // Update EditText view with the modified input
                 }
             });
         }
     }
 
+    // Method to set click listeners for operation buttons
     private void setOperationButtonClickListeners() {
         int[] operationButtonIds = {
                 R.id.button_add, R.id.button_subtract,
@@ -82,92 +86,105 @@ public class CalculatorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Button button = (Button) v;
-                    input.append(button.getText());
-                    editText.setText(input.toString());
+                    input.append(button.getText()); // Append clicked operation symbol to input StringBuilder
+                    editText.setText(input.toString()); // Update EditText view with the modified input
                 }
             });
         }
     }
 
+    // Method to clear input and EditText view
     private void clearInput() {
-        input.setLength(0);
-        editText.setText("");
+        input.setLength(0); // Clear StringBuilder
+        editText.setText(""); // Clear EditText view
     }
 
+    // Method to calculate and display result
     private void calculateResult() {
         try {
-            String result = evaluate(input.toString());
-            editText.setText(result);
-            input.setLength(0);
-            input.append(result);
+            String result = evaluate(input.toString()); // Evaluate input expression
+            editText.setText(result); // Display result in EditText view
+            input.setLength(0); // Clear StringBuilder
+            input.append(result); // Update StringBuilder with result
         } catch (ArithmeticException e) {
-            editText.setText("Error");
-            input.setLength(0);
+            editText.setText("Error"); // Display "Error" if evaluation fails
+            input.setLength(0); // Clear StringBuilder
         }
     }
 
+    // Method to evaluate mathematical expression
     private String evaluate(String expression) {
-        return String.valueOf(eval(expression));
+        return String.valueOf(eval(expression)); // Return evaluated result as string
     }
 
+    // Recursive descent parsing to evaluate mathematical expression
     private double eval(final String str) {
         return new Object() {
             int pos = -1, ch;
 
+            // Method to move to the next character in the expression
             void nextChar() {
                 ch = (++pos < str.length()) ? str.charAt(pos) : -1;
             }
 
+            // Method to consume a specific character in the expression
             boolean eat(int charToEat) {
-                while (ch == ' ') nextChar();
-                if (ch == charToEat) {
-                    nextChar();
+                while (ch == ' ') nextChar(); // Skip whitespace characters
+                if (ch == charToEat) { // Check if current character matches the specified one
+                    nextChar(); // Move to the next character
                     return true;
                 }
                 return false;
             }
 
+            // Method to parse the entire expression
             double parse() {
-                nextChar();
-                double x = parseExpression();
+                nextChar(); // Start by moving to the first character
+                double x = parseExpression(); // Parse the expression
+                // Check if there are any unexpected characters left in the expression
                 if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char) ch);
-                return x;
+                return x; // Return the parsed result
             }
 
+            // Method to parse an expression containing addition and subtraction
             double parseExpression() {
-                double x = parseTerm();
+                double x = parseTerm(); // Parse the first term of the expression
                 for (; ; ) {
-                    if (eat('+')) x += parseTerm();
-                    else if (eat('-')) x -= parseTerm();
-                    else return x;
+                    if (eat('+')) x += parseTerm(); // If encountering '+', parse the next term and add it
+                    else if (eat('-')) x -= parseTerm(); // If encountering '-', parse the next term and subtract it
+                    else return x; // If no more addition or subtraction operators are found, return the result
                 }
             }
 
+            // Method to parse a term containing multiplication and division
             double parseTerm() {
-                double x = parseFactor();
+                double x = parseFactor(); // Parse the first factor of the term
                 for (; ; ) {
-                    if (eat('*')) x *= parseFactor();
-                    else if (eat('/')) x /= parseFactor();
-                    else return x;
+                    if (eat('*')) x *= parseFactor(); // If encountering '*', parse the next factor and multiply it
+                    else if (eat('/')) x /= parseFactor(); // If encountering '/', parse the next factor and divide by it
+                    else return x; // If no more multiplication or division operators are found, return the result
                 }
             }
 
+            // Method to parse a factor, which can be a number or a subexpression in parentheses
             double parseFactor() {
-                if (eat('+')) return parseFactor();
-                if (eat('-')) return -parseFactor();
+                if (eat('+')) return parseFactor(); // If encountering '+', parse the next factor
+                if (eat('-')) return -parseFactor(); // If encountering '-', parse the next factor and negate it
                 double x;
-                int startPos = this.pos;
-                if (eat('(')) {
-                    x = parseExpression();
-                    eat(')');
-                } else if ((ch >= '0' && ch <= '9') || ch == '.') {
+                int startPos = this.pos; // Record the starting position of the factor
+                if (eat('(')) { // If encountering '(', parse a subexpression
+                    x = parseExpression(); // Parse the subexpression
+                    eat(')'); // Consume the closing parenthesis
+                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // If encountering a number or a dot
+                    // Continue parsing characters until a non-numeric character or dot is encountered
                     while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    // Parse the numeric substring and convert it to a double
                     x = Double.parseDouble(str.substring(startPos, this.pos));
                 } else {
-                    throw new RuntimeException("Unexpected: " + (char) ch);
+                    throw new RuntimeException("Unexpected: " + (char) ch); // If encountering an unexpected character, throw an exception
                 }
-                return x;
+                return x; // Return the parsed factor
             }
-        }.parse();
+        }.parse(); // Invoke the parse() method of the anonymous inner class to start parsing
     }
 }
