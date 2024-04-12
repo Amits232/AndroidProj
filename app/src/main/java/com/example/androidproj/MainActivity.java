@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // Animation ended, navigate to the next activity (replace HomePageActivity.class with your actual home page activity)
+                // Animation ended, navigate to the next activity 
                 Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
                 startActivity(intent);
                 finish(); // Optional: finish the current activity so that back button won't come back here
